@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .parent{
+            background-color: blue;
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        .child{
+            display: none;
+            box-sizing: border-box;
+            position: absolute;
+            right: inherit;
+            top: auto;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            padding: 0.5rem;
+            background-color: rgba(128, 161, 51, 0.6);
+            border-radius: 4px;
+        }
+        ul{
+            list-style-type: none;
+            color: white;
+        }
+        li{
+            background-color: rgba(128, 161, 51, 0.7);
+            margin: 0.25rem 0rem;
+            padding: 0rem 0.5rem;
+            border-radius: 4px;
+        }
+        li:hover{
+            cursor: pointer;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="parent" contextmenu="func()">
+        <div class="child">
+            <ul>
+                <li>Home</li>
+                <li>About Me</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="result"></div>
+    <script>
+        var parent = document.querySelector(".parent"),
+            child = document.querySelector(".child"),
+            listItem = document.querySelectorAll("li"),
+            result = document.querySelector(".result");
+        parent.addEventListener("contextmenu", function(e){
+            child.style.top = (e.offsetY - 10) + "px";
+            child.style.left = (e.offsetX - 10) + "px";
+            child.style.display = "block";
+            e.preventDefault();
+        })
+        parent.addEventListener("click", function(e){
+            child.style.display = "none";
+        })
+        for(let i = 0; i < listItem.length; i++){
+            listItem[i].addEventListener("click", function(e){
+                result.innerText = this.innerText;
+            })
+        }
+    </script>
+</body>
+</html>
