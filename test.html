@@ -62,9 +62,19 @@
             listItem = document.querySelectorAll("li"),
             result = document.querySelector(".result");
         parent.addEventListener("contextmenu", function(e){
-            child.style.top = (e.offsetY - 10) + "px";
-            child.style.left = (e.offsetX - 10) + "px";
-            child.style.display = "block";
+            if((300 >= (e.offsetX + child.offsetWidth)) && (300 >= (e.offsetY + child.offsetHeight))){
+                child.style.top = (e.offsetY - 10) + "px";
+                child.style.left = (e.offsetX - 10) + "px";
+                child.style.display = "block";
+                console.log(300 > (e.offsetX + child.offsetWidth));
+                console.log(300 > (e.offsetY + child.offsetHeight));
+            }
+            console.log(
+                "e.offsetX: " + e.offsetX + "\n" +
+                "e.offsetY: " + e.offsetY + "\n" +
+                "child.offsetWidth: " + child.offsetWidth + "\n" +
+                "child.offsetHeight: " + child.offsetHeight + "\n"
+            )
             e.preventDefault();
         })
         parent.addEventListener("click", function(e){
